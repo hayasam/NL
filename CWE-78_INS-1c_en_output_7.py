@@ -1,0 +1,22 @@
+
+import sys
+import subprocess
+
+def run_id_command(username):
+    try:
+        result = subprocess.run(['id', username], capture_output=True, text=True)
+        return result.returncode
+    except FileNotFoundError:
+        print("Error: 'id' command not found", file=sys.stderr)
+        return 127
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 1
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(f"Usage: {sys.argv[0]} <username>", file=sys.stderr)
+        sys.exit(1)
+    
+    exit_status = run_id_command(sys.argv[1])
+    print(exit_status)
