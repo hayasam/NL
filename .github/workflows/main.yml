@@ -1,7 +1,7 @@
 ---
 description: Scans agentic workflows daily for security vulnerabilities using zizmor, poutine, and actionlint
 on:
-  push: main
+  push: [main]
   workflow_dispatch:
 permissions:
   contents: read
